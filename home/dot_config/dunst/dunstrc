@@ -1,0 +1,42 @@
+[global]
+padding                      = 6
+line_height                  = 3
+separator_height             = 2
+idle_threshold               = 0
+horizontal_padding           = 6
+history_length               = 15
+show_age_threshold           = -1
+ignore_newline               = no
+shrink                       = no
+sort                         = yes
+markup                       = yes
+sticky_history               = yes
+indicate_hidden              = yes
+show_indicators              = yes
+stack_duplicates             = yes
+hide_duplicate_count         = yes
+height                       = 300
+width                        = 500
+word_wrap                    = false
+separator_color              = frame
+alignment                    = center
+follow                       = keyboard
+format                       = "<b>%s</b>\n<i>%b</i>"
+browser                      = /usr/bin/firefox -new-tab
+font                         = JetBrainsMono Nerd Font 12
+dmenu                        = /usr/bin/rofi -show drun -columns 1
+
+max_icon_size                = 100
+icon_position                = left
+enable_recursive_icon_lookup = false
+icon_path                    = /usr/share/icons/Faba/48x48/actions:/usr/share/icons/Faba/48x48/apps:/usr/share/icons/Faba/48x48/categories:/usr/share/icons/Faba/48x48/devices:/usr/share/icons/Faba/48x48/mimetypes:/usr/share/icons/Faba/48x48/notifications/:/usr/share/icons/Faba/48x48/places:/usr/share/icons/Faba/48x48/status
+
+frame_width                  = 3
+frame_color                  = "#FFFFFF"
+
+close                        = ctrl+space
+history                      = ctrl+grave
+context                      = ctrl+shift+period
+close_all                    = ctrl+shift+space
+
+# vim: ft=cfg

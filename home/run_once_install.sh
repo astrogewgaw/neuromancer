@@ -1,0 +1,370 @@
+#!/usr/bin/env bash
+
+declare -A urls
+declare -A paths
+
+hi() {
+	cls
+	echo " ███▄    █ ▓█████  █    ██  ██▀███   ▒█████   ███▄ ▄███▓ ▄▄▄       ███▄    █  ▄████▄  ▓█████  ██▀███  "
+	echo " ██ ▀█   █ ▓█   ▀  ██  ▓██▒▓██ ▒ ██▒▒██▒  ██▒▓██▒▀█▀ ██▒▒████▄     ██ ▀█   █ ▒██▀ ▀█  ▓█   ▀ ▓██ ▒ ██▒"
+	echo "▓██  ▀█ ██▒▒███   ▓██  ▒██░▓██ ░▄█ ▒▒██░  ██▒▓██    ▓██░▒██  ▀█▄  ▓██  ▀█ ██▒▒▓█    ▄ ▒███   ▓██ ░▄█ ▒"
+	echo "▓██▒  ▐▌██▒▒▓█  ▄ ▓▓█  ░██░▒██▀▀█▄  ▒██   ██░▒██    ▒██ ░██▄▄▄▄██ ▓██▒  ▐▌██▒▒▓▓▄ ▄██▒▒▓█  ▄ ▒██▀▀█▄  "
+	echo "▒██░   ▓██░░▒████▒▒▒█████▓ ░██▓ ▒██▒░ ████▓▒░▒██▒   ░██▒ ▓█   ▓██▒▒██░   ▓██░▒ ▓███▀ ░░▒████▒░██▓ ▒██▒"
+	echo "░ ▒░   ▒ ▒ ░░ ▒░ ░░▒▓▒ ▒ ▒ ░ ▒▓ ░▒▓░░ ▒░▒░▒░ ░ ▒░   ░  ░ ▒▒   ▓▒█░░ ▒░   ▒ ▒ ░ ░▒ ▒  ░░░ ▒░ ░░ ▒▓ ░▒▓░"
+	echo "░ ░░   ░ ▒░ ░ ░  ░░░▒░ ░ ░   ░▒ ░ ▒░  ░ ▒ ▒░ ░  ░      ░  ▒   ▒▒ ░░ ░░   ░ ▒░  ░  ▒    ░ ░  ░  ░▒ ░ ▒░"
+	echo "   ░   ░ ░    ░    ░░░ ░ ░   ░░   ░ ░ ░ ░ ▒  ░      ░     ░   ▒      ░   ░ ░ ░           ░     ░░   ░ "
+	echo "         ░    ░  ░   ░        ░         ░ ░         ░         ░  ░         ░ ░ ░         ░  ░   ░     "
+	echo "                                                                             ░                        "
+}
+
+cls() { printf "\e[2J\e[H"; }
+say() { printf '\e[1m%s\e[m' "$1"; }
+host() { printf '%s' "${HOSTNAME:-$(hostname)}"; }
+
+user() {
+	: \\u
+	printf '%s' "${_@P}"
+}
+
+paths[py]="$HOME/conda/bin/python"
+paths[cz]="$HOME/.local/share/chezmoi"
+
+urls[yay]="https://aur.archlinux.org/yay-bin.git"
+urls[tempo]="http://git.code.sf.net/p/tempo/tempo"
+urls[presto]="https://github.com/scottransom/presto"
+urls[autosugg]="https://github.com/zsh-users/zsh-autosuggestions"
+urls[fsh]="https://github.com/zdharma-continuum/fast-syntax-highlighting"
+urls[omz]="https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+urls[miniconda]="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
+
+pkgs=(
+	"alacritty"
+	"alsa-plugins"
+	"alsa-utils"
+	"atuin"
+	"avahi"
+	"bat"
+	"bluez"
+	"bluez-utils"
+	"bottom"
+	"brightnessctl"
+	"cargo"
+	"cfitsio"
+	"cmake"
+	"cmatrix"
+	"cool-retro-term"
+	"cups"
+	"cups-pdf"
+	"curl"
+	"duf"
+	"dunst"
+	"dust"
+	"exa"
+	"fd"
+	"feh"
+	"ffmpeg"
+	"ffmpegthumbnailer"
+	"fftw"
+	"firefox"
+	"flameshot"
+	"fzf"
+	"git-delta"
+	"github-cli"
+	"go"
+	"gzip"
+	"hunspell"
+	"hunspell-en_us"
+	"hyperfine"
+	"i3-wm"
+	"i3lock"
+	"imagemagick"
+	"inkscape"
+	"just"
+	"lazygit"
+	"man-db"
+	"man-pages"
+	"mtools"
+	"ncspot"
+	"neofetch"
+	"nnn"
+	"nodejs"
+	"noto-fonts-cjk"
+	"npm"
+	"ntfs-3g"
+	"nvidia"
+	"nvidia-utils"
+	"okular"
+	"openssh"
+	"playerctl"
+	"pulseaudio"
+	"pulseaudio-alsa"
+	"pulseaudio-bluetooth"
+	"python-pillow"
+	"python-pywal"
+	"python2"
+	"reflector"
+	"ripgrep"
+	"rofi"
+	"rsync"
+	"rust"
+	"solaar"
+	"starship"
+	"tectonic"
+	"texlive-bin"
+	"texlive-core"
+	"texlive-latexextra"
+	"tokei"
+	"udiskie"
+	"udisks2"
+	"ueberzug"
+	"unrar"
+	"unzip"
+	"vlc"
+	"watchexec"
+	"wget"
+	"xdotool"
+	"xorg-server"
+	"xorg-xev"
+	"xorg-xinit"
+	"xorg-xrandr"
+	"xsel"
+	"zsh"
+)
+
+extras=(
+	"bibata-cursor-theme-bin"
+	"faba-icon-theme"
+	"julia-bin"
+	"linux-wifi-hotspot"
+	"peaclock"
+	"pgplot"
+	"pipes.c"
+	"slack-desktop"
+	"zoom"
+	"zotero-bin"
+)
+
+pys=(
+	"astropy"
+	"click"
+	"jupyter"
+	"numpy"
+	"pipx"
+	"proplot"
+	"pytest"
+	"pytest-cov"
+	"rich"
+	"scipy"
+	"setuptools"
+	"ward"
+	"wheel"
+)
+
+pac_install() {
+	say "Installing $*..."
+	sudo pacman -S "$@" --noconfirm --needed
+	cls
+}
+
+aur_install() {
+	say "Installing $*..."
+	yay -S --noconfirm "$@"
+	cls
+}
+
+update_core() {
+	say "Configuring pacman and updating the entire system..."
+	sudo pacman-key --delete all
+	sudo pacman-key --populate archlinux
+	sudo pacman -Syy
+	sudo pacman -Suu
+	cls
+}
+
+install_yay() {
+	if ! type -p yay &>/dev/null; then
+		say "Installing yay: the AUR helper..."
+		pac_install git base-devel
+		git clone "${urls[yay]}"
+		cd yay-bin || exit
+		makepkg -si
+		cd ..
+		rm -rf yay-bin
+		cls
+	else
+		say "Yay is already installed. Moving on..."
+		cls
+	fi
+}
+
+install_core() {
+	for pkg in "${pkgs[@]}"; do
+		pac_install "$pkg"
+	done
+}
+
+install_aur() {
+	install_yay
+	for extra in "${extras[@]}"; do
+		aur_install "$extra"
+	done
+}
+
+install_omz() {
+	if ! type -p omz &>/dev/null; then
+		say "Installing OMZ..."
+		sh -c "$(curl -fsSL "${urls[omz]}")" "" --keep-zshrc --unattended
+
+		say "Installing plugins..."
+		for plugin in "fsh" "autosugg"; do
+			git clone \
+				"${urls[$plugin]}" \
+				"${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/$plugin"
+		done
+		cls
+	else
+		say "OMZ is already installed. Moving on..."
+		cls
+	fi
+}
+
+install_miniconda() {
+	if ! type -p conda &>/dev/null; then
+		say "Installing Miniconda."
+		wget "${urls[miniconda]}" -O "$HOME/miniconda.sh"
+		bash "$HOME/miniconda.sh" -b -p "$HOME/conda"
+		rm -rf "$HOME/miniconda.sh"
+		cls
+	else
+		say "Miniconda is already installed. Moving on..."
+		cls
+	fi
+}
+
+install_nfs() {
+	tempdir="$HOME/temp"
+	fonts=("JetBrainsMono")
+	fontdir="$HOME/.local/share/fonts"
+
+	repo="ryanoasis/nerd-fonts"
+	apiurl="https://api.github.com/repos/$repo/releases/latest"
+	version="$(curl --silent "$apiurl" | grep -Po '"tag_name": "\K.*?(?=")')"
+	release="https://github.com/$repo/releases/download/$version"
+
+	say "Installing Nerd Fonts (Version: $version)..."
+	for font in "${fonts[@]}"; do
+		exists=$(fc-list | grep -i "$font")
+		if [ -z "$exists" ]; then
+			SX=0
+			say "Nope. $font is not installed." &&
+				say "Downloading..." &&
+				mkdir -p "$tempdir" &&
+				wget --show-progress -q "$release/$font.zip" -P "$tempdir" &&
+				unzip -qq "$tempdir/$font.zip" -d "$fontdir" &&
+				SX=1
+		else
+			say "$font is already installed."
+		fi
+	done
+
+	if [ "$SX" -eq 1 ]; then
+		say "Updating cache..." &&
+			fc-cache -fv >/dev/null 2>&1 &&
+			rm -rf "$tempdir"
+	fi
+
+	cls
+}
+
+install_tempo() {
+	if ! type -p tempo &>/dev/null; then
+		say "Installing TEMPO..."
+		git clone "${urls[tempo]}" "$HOME/tempo"
+		cd "$TEMPO" || exit
+		source prepare
+		./configure
+		sudo make
+		sudo make install
+		cd "$HOME" || exit
+		cls
+	else
+		say "TEMPO is already installed. Moving on..."
+		cls
+	fi
+}
+
+install_presto() {
+	if ! type -p prepfold &>/dev/null; then
+		say "Installing PRESTO."
+		git clone "${urls[presto]}" "$PRESTO"
+		cd "$PRESTO/src" || exit
+		make makewisdom
+		make prep
+		make
+		make clean
+		cd "$HOME" || exit
+		cls
+	else
+		say "PRESTO is already installed. Moving on..."
+		cls
+	fi
+}
+
+python_setup() {
+	say "Setting up the Python environment..."
+	for pkg in "${pys[@]}"; do
+		say "Installing: ${pkg}..."
+		"${paths[py]}" -m pip install "$pkg"
+		cls
+	done
+	"${paths[py]}" -m \
+		pip install \
+		--index-url https://test.pypi.org/simple/ \
+		pywalfox==2.8.0rc1
+	cls
+}
+
+neovim_setup() {
+	say "Setting up neovim..."
+	"${paths[py]}" -m pip install pynvim
+	sudo npm i -g neovim
+	aur_install neovim-git
+	cls
+}
+
+wallpaper_setup() {
+	if [ ! -d "$HOME/wallpapers" ]; then
+		say "Setting up the wallpaper and theme..."
+		udisksctl mount -b /dev/sdb1
+		ln -s "$HDD/images/wallpapers/desktop" "$HOME/wallpapers"
+		wal -i "$HOME/wallpapers"
+	else
+		say "Wallpaper and theme already set."
+	fi
+	cls
+}
+
+setup() {
+	hi
+
+	cp "./etc/pacman.conf" "/etc/pacman.conf"
+	cp "./etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
+
+	update_core
+	install_core
+	install_extras
+
+	install_nfs
+	install_omz
+	install_tempo
+	install_presto
+	install_miniconda
+
+	python_setup
+	neovim_setup
+	wallpaper_setup
+
+	hi
+}
+
+setup
