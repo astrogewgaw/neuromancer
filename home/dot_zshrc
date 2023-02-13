@@ -1,0 +1,86 @@
+export ZSH=/home/$USER/.oh-my-zsh
+
+ZSH_THEME=""
+CASE_SENSITIVE="true"
+ENABLE_CORRECTION="true"
+HIST_STAMPS="dd.mm.yyyy"
+DISABLE_UNTRACKED_FILES_DIRTY="true"
+COMPLETION_WAITING_DOTS="%FAlmost done...%f"
+
+plugins=(
+    abbr
+    autosugg
+    fsh
+    fzf
+    gh
+    git
+    pip
+    rust
+)
+
+source $ZSH/oh-my-zsh.sh
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/ujjwal/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/ujjwal/conda/etc/profile.d/conda.sh" ]; then
+        . "/home/ujjwal/conda/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/ujjwal/conda/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export PATH=/bin:$PATH
+export PATH=/sbin:$PATH
+export PATH=/usr/bin:$PATH
+export PATH=/usr/sbin:$PATH
+export PATH=$HOME/.bin:$PATH
+export PATH=$HOME/go/bin:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=$HOME/conda/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/presto/bin:$PATH
+export PATH=/usr/local/go/bin:$PATH
+
+alias l="exa"
+alias vi="nvim"
+alias vim="nvim"
+alias cz="chezmoi"
+alias hdd="cd $HDD"
+alias ll="exa -l@h --icons --sort=type"
+alias cp="rsync --progress --recursive --archive"
+alias ls="exa -l@h --icons --sort=type --git-ignore"
+alias lt="exa -l@hT --icons --sort=type --git-ignore"
+alias la="exa -l@ha --icons --sort=type --git-ignore"
+
+export LANG=en_US.UTF-8
+export MANPAGER="less -X"
+export LC_ALL="en_US.UTF-8"
+export HDD="/run/media/$USER/codex"
+export LESS="--ignore-case --quit-if-one-screen --quit-on-intr -FRXQ"
+
+if [[ -n $SSH_CONNECTION ]]; then
+	export EDITOR='nano'
+else
+	export EDITOR='nvim'
+fi
+
+export ARCHFLAGS="-arch x86_64"
+
+export TEMPO="$HOME/tempo"
+export PRESTO="$HOME/presto"
+export PGPLOT_DIR="/usr/lib"
+export LD_LIBRARY_PATH="$PRESTO/lib:$LD_LIBRARY_PATH"
+
+export NNN_FIFO=/tmp/nnn.fifo
+export NNN_PLUGS=""
+
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"
