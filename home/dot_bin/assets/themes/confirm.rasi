@@ -11,7 +11,7 @@ window {
     x-offset:         0px;
     y-offset:         0px;
     padding:          25px;
-    width:            300px;
+    width:            305px;
     location:         center;
     border-color:     @foreground;
     border:           3px 3px 3px 3px;
