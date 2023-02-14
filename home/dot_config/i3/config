@@ -61,11 +61,11 @@ bindsym XF86AudioLowerVolume  exec $HOME/.bin/vol.sh -5%
 bindsym XF86AudioMute         exec $HOME/.bin/vol.sh toggle
 
 bindsym $WIN+Shift+q kill
-bindsym $WIN+Return  exec kitty
+bindsym $WIN+Return  exec alacritty
 bindsym Print        exec "flameshot gui"
 bindsym $WIN+p       exec $HOME/.bin/pow.sh
 bindsym $WIN+d       exec rofi -show drun -columns 1
-bindsym $WIN+t       exec kitty --title Timekeeper peaclock
+bindsym $WIN+t       exec alacritty --title=Timekeeper -e=peaclock
 
 for_window [title="Timekeeper"] no_focus
 for_window [title="Timekeeper"] border pixel 5

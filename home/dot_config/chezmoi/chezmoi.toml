@@ -1,0 +1,12 @@
+encryption = "age"
+[age]
+    identity = "/home/ujjwal/.key.txt"
+    recipient = "age1tlq75g85tfuwf26xgwjanvs87qy3u4razmvnvfg9cufmar3n3qxsdwrxry"
+
+[diff]
+    pager="delta"
+    exclude = ["scripts"]
+
+[merge]
+    command = "nvim"
+    args = ["-d", "{{ .Destination }}", "{{ .Source }}", "{{ .Target }}"]
