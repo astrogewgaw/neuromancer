@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+STATUS="disabled"
+
 declare -A urls
 declare -A paths
 
@@ -18,7 +20,7 @@ hi() {
 }
 
 cls() { printf "\e[2J\e[H"; }
-say() { printf '\e[1m%s\e[m' "$1"; }
+say() { printf '\e[1m%s\e[m\n' "$1"; }
 host() { printf '%s' "${HOSTNAME:-$(hostname)}"; }
 
 user() {
@@ -32,8 +34,6 @@ paths[cz]="$HOME/.local/share/chezmoi"
 urls[yay]="https://aur.archlinux.org/yay-bin.git"
 urls[tempo]="http://git.code.sf.net/p/tempo/tempo"
 urls[presto]="https://github.com/scottransom/presto"
-urls[autosugg]="https://github.com/zsh-users/zsh-autosuggestions"
-urls[fsh]="https://github.com/zdharma-continuum/fast-syntax-highlighting"
 urls[omz]="https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
 urls[miniconda]="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh"
 
@@ -203,7 +203,7 @@ install_core() {
 	done
 }
 
-install_aur() {
+install_extras() {
 	install_yay
 	for extra in "${extras[@]}"; do
 		aur_install "$extra"
@@ -214,13 +214,6 @@ install_omz() {
 	if ! type -p omz &>/dev/null; then
 		say "Installing OMZ..."
 		sh -c "$(curl -fsSL "${urls[omz]}")" "" --keep-zshrc --unattended
-
-		say "Installing plugins..."
-		for plugin in "fsh" "autosugg"; do
-			git clone \
-				"${urls[$plugin]}" \
-				"${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/$plugin"
-		done
 		cls
 	else
 		say "OMZ is already installed. Moving on..."
@@ -347,8 +340,8 @@ wallpaper_setup() {
 setup() {
 	hi
 
-	cp "./etc/pacman.conf" "/etc/pacman.conf"
-	cp "./etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
+	sudo cp "${paths[cz]}/home/etc/pacman.conf" "/etc/pacman.conf"
+	sudo cp "${paths[cz]}/home/etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
 
 	update_core
 	install_core
@@ -367,4 +360,6 @@ setup() {
 	hi
 }
 
-setup
+if [[ $STATUS == "enabled" ]]; then
+	setup
+fi

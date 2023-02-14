@@ -16,11 +16,10 @@ window:
   decorations: full
   dynamic_title: true
   dynamic_padding: false
-  startup_mode: Fullscreen
+  startup_mode: Windowed
   class:
     general: Alacritty
     instance: Alacritty
-  decorations_theme_variant: dark
 
 scrolling:
   multiplier: 5
@@ -47,17 +46,12 @@ selection:
 cursor:
   style:
     shape: Block
-    blinking: On
-  vi_mode_style: Beam
+    blinking: Off
   thickness: 0.15
-  blink_timeout: 5
-  blink_interval: 750
+  vi_mode_style: Beam
   unfocused_hollow: true
 
 live_config_reload: true
-
-shell:
-  program: /usr/bin/zsh
 
 ipc_socket: true
 alt_send_esc: true
