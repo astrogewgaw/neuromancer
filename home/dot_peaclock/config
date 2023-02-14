@@ -1,0 +1,45 @@
+mode clock
+
+block 1 1
+ratio 2 1
+margin 0 0
+padding 0 0
+date-padding 1
+
+fill-colon '.'
+fill-active '▉'
+fill-inactive ''
+
+locale ''
+timezone ''
+view digital
+toggle padding
+date '%a %d %b'
+
+timer 10m:0s
+stopwatch start
+timer-exec 'dunstify -a peaclock "Timer complete!"'
+
+rate-input 50
+rate-refresh 250
+rate-status 5000
+
+set date on
+set hour-24 on
+set seconds on
+set auto-size off
+set auto-ratio on
+
+style date #2aa198
+style colon-fg clear
+style colon-bg clear
+style active-bg clear
+style active-fg party
+style inactive-bg clear
+style inactive-fg #1a525a
+
+style error red
+style text clear
+style prompt clear
+style success green
+style background clear

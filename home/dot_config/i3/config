@@ -70,9 +70,9 @@ bindsym $WIN+t       exec alacritty --title=Timekeeper -e=peaclock
 for_window [title="Timekeeper"] no_focus
 for_window [title="Timekeeper"] border pixel 5
 for_window [title="Timekeeper"] floating enable
-for_window [title="Timekeeper"] resize set 550px 200px
+for_window [title="Timekeeper"] resize set 300px 175px
 for_window [title="Timekeeper"] move container to output secondary
-for_window [title="Timekeeper"] move position center, move left 650, move up 425
+for_window [title="Timekeeper"] move position center, move left 775, move up 425
 
 bindsym $WIN+h split h
 bindsym $WIN+v split v
