@@ -1,7 +1,9 @@
 set $WIN Mod4
 
-default_border pixel 5
-default_floating_border pixel 5
+default_border pixel 1
+workspace_layout default
+default_orientation vertical
+default_floating_border pixel 1
 
 set $ws1  "1"
 set $ws2  "2"
@@ -65,14 +67,21 @@ bindsym $WIN+Return  exec alacritty
 bindsym Print        exec "flameshot gui"
 bindsym $WIN+p       exec $HOME/.bin/pow.sh
 bindsym $WIN+d       exec rofi -show drun -columns 1
-bindsym $WIN+t       exec alacritty --title=Timekeeper -e=peaclock
+bindsym $WIN+m       exec alacritty --title=MusicPlayer -e=ncspot
+bindsym $WIN+t       exec alacritty --title=TimeKeeper -e=peaclock
 
-for_window [title="Timekeeper"] no_focus
-for_window [title="Timekeeper"] border pixel 5
-for_window [title="Timekeeper"] floating enable
-for_window [title="Timekeeper"] resize set 300px 175px
-for_window [title="Timekeeper"] move container to output secondary
-for_window [title="Timekeeper"] move position center, move left 775, move up 425
+for_window [title="TimeKeeper"] no_focus
+for_window [title="TimeKeeper"] border pixel 1
+for_window [title="TimeKeeper"] floating enable
+for_window [title="TimeKeeper"] resize set 750px 250px
+for_window [title="TimeKeeper"] move container to output primary
+for_window [title="TimeKeeper"] move position center, move left 575, move up 400
+
+for_window [title="MusicPlayer"] border pixel 1
+for_window [title="MusicPlayer"] floating enable
+for_window [title="MusicPlayer"] resize set 1250px 500px
+for_window [title="MusicPlayer"] move container to output primary
+for_window [title="MusicPlayer"] move position center, move left 325, move down 275
 
 bindsym $WIN+h split h
 bindsym $WIN+v split v

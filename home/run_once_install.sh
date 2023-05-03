@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STATUS="disabled"
+STATUS="enabled"
 
 declare -A urls
 declare -A paths
@@ -48,7 +48,6 @@ pkgs=(
 	"bluez-utils"
 	"bottom"
 	"brightnessctl"
-	"cargo"
 	"cfitsio"
 	"cmake"
 	"cmatrix"
@@ -84,17 +83,18 @@ pkgs=(
 	"man-db"
 	"man-pages"
 	"mtools"
-	"ncspot"
 	"neofetch"
 	"nnn"
 	"nodejs"
 	"noto-fonts-cjk"
+	"noto-fonts-emoji"
 	"npm"
 	"ntfs-3g"
 	"nvidia"
 	"nvidia-utils"
 	"okular"
 	"openssh"
+	"pacman-contrib"
 	"playerctl"
 	"pulseaudio"
 	"pulseaudio-alsa"
@@ -106,13 +106,9 @@ pkgs=(
 	"ripgrep"
 	"rofi"
 	"rsync"
-	"rust"
 	"solaar"
 	"starship"
 	"tectonic"
-	"texlive-bin"
-	"texlive-core"
-	"texlive-latexextra"
 	"tokei"
 	"udiskie"
 	"udisks2"
@@ -136,10 +132,13 @@ extras=(
 	"faba-icon-theme"
 	"julia-bin"
 	"linux-wifi-hotspot"
+	"ncspot-bin"
+	"pandoc-bin"
 	"peaclock"
 	"pgplot"
 	"pipes.c"
 	"slack-desktop"
+	"ttf-juliamono"
 	"zoom"
 	"zotero-bin"
 )
@@ -317,11 +316,23 @@ python_setup() {
 	cls
 }
 
+rust_setup() {
+	say "Setting up the Rust environment..."
+	curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+	cls
+}
+
 neovim_setup() {
 	say "Setting up neovim..."
 	"${paths[py]}" -m pip install pynvim
 	sudo npm i -g neovim
 	aur_install neovim-git
+	cls
+}
+
+tex_setup() {
+	say "Setting up TinyTeX..."
+	wget -qO- "https://yihui.org/tinytex/install-bin-unix.sh" | sh
 	cls
 }
 
@@ -340,22 +351,24 @@ wallpaper_setup() {
 setup() {
 	hi
 
-	sudo cp "${paths[cz]}/home/etc/pacman.conf" "/etc/pacman.conf"
-	sudo cp "${paths[cz]}/home/etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
+	#sudo cp "${paths[cz]}/home/etc/pacman.conf" "/etc/pacman.conf"
+	#sudo cp "${paths[cz]}/home/etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
 
 	update_core
 	install_core
 	install_extras
 
-	install_nfs
-	install_omz
-	install_tempo
-	install_presto
-	install_miniconda
-
-	python_setup
-	neovim_setup
-	wallpaper_setup
+	#install_nfs
+	#install_omz
+	#install_tempo
+	# install_presto
+	# install_miniconda
+	#
+	# tex_setup
+	# rust_setup
+	# python_setup
+	# neovim_setup
+	# wallpaper_setup
 
 	hi
 }

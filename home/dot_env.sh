@@ -10,8 +10,6 @@ else
 	export EDITOR='nvim'
 fi
 
-export ARCHFLAGS="-arch x86_64"
-
 export TEMPO="$HOME/tempo"
 export PRESTO="$HOME/presto"
 export PGPLOT_DIR="/usr/lib"

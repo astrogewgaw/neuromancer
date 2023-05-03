@@ -55,8 +55,7 @@ cursor:
 live_config_reload: true
 
 ipc_socket: true
-alt_send_esc: true
-working_directory: /run/media/ujjwal/codex/codes
+working_directory: /run/media/upanda/codex/codes
 
 mouse:
   hide_when_typing: true

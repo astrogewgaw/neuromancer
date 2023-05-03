@@ -3,7 +3,7 @@
 configuration {
     show-icons:       false;
     disable-history:  false;
-	sidebar-mode:     false;
+	  sidebar-mode:     false;
     font:             "JetBrainsMono Nerd Font ExtraBold 12";
 }
 

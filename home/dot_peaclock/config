@@ -6,8 +6,8 @@ margin 0 0
 padding 0 0
 date-padding 1
 
-fill-colon '.'
-fill-active '▉'
+fill-colon '█'
+fill-active '█'
 fill-inactive ''
 
 locale ''
@@ -25,18 +25,18 @@ rate-refresh 250
 rate-status 5000
 
 set date on
-set hour-24 on
 set seconds on
-set auto-size off
+set hour-24 on
+set auto-size on
 set auto-ratio on
 
-style date #2aa198
-style colon-fg clear
+style date clear
 style colon-bg clear
 style active-bg clear
-style active-fg party
+style colon-fg #F9D949
+style active-fg #D21312
+style inactive-fg clear
 style inactive-bg clear
-style inactive-fg #1a525a
 
 style error red
 style text clear
