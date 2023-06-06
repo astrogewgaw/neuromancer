@@ -4,7 +4,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "catppuccin",
+      colorscheme = "kanagawa",
     },
   },
   {
@@ -195,10 +195,14 @@ return {
       }
     end
   },
+  { "Bekaboo/dropbar.nvim" },
+  { "navarasu/onedark.nvim" },
   { "rebelot/kanagawa.nvim" },
+  { "folke/tokyonight.nvim" },
   { "junegunn/vim-easy-align" },
   { "shortcuts/no-neck-pain.nvim" },
   { "JuliaEditorSupport/julia-vim" },
+  { "nyoom-engineering/oxocarbon.nvim" },
   { "catppuccin/nvim",                            as = "catppuccin" },
   { "rose-pine/neovim",                           as = "rose-pine" },
 }
