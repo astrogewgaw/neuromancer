@@ -1,53 +1,9 @@
-local nls = require("null-ls")
-
 return {
   {
     "LazyVim/LazyVim",
     opts = {
       colorscheme = "kanagawa",
     },
-  },
-  {
-    "goolord/alpha-nvim",
-    opts = function(_, opts)
-      local logo = [[
-                :h-                                  Nhy`
-              -mh.                           h.    `Ndho
-              hmh+                          oNm.   oNdhh
-              `Nmhd`                        /NNmd  /NNhhd
-              -NNhhy                      `hMNmmm`+NNdhhh
-              .NNmhhs              ```....`..-:/./mNdhhh+
-              mNNdhhh-     `.-::///+++////++//:--.`-/sd`
-              oNNNdhhdo..://++//++++++/+++//++///++/-.`
-          y.   `mNNNmhhhdy+/++++//+/////++//+++///++////-` `/oos:
-    .    Nmy:  :NNNNmhhhhdy+/++/+++///:.....--:////+++///:.`:s+
-    h-   dNmNmy oNNNNNdhhhhy:/+/+++/-         ---:/+++//++//.`
-    hd+` -NNNy`./dNNNNNhhhh+-://///    -+oo:`  ::-:+////++///:`
-    /Nmhs+oss-:++/dNNNmhho:--::///    /mmmmmo  ../-///++///////.
-      oNNdhhhhhhhs//osso/:---:::///    /yyyyso  ..o+-//////////:/.
-      /mNNNmdhhhh/://+///::://////     -:::- ..+sy+:////////::/:/.
-        /hNNNdhhs--:/+++////++/////.      ..-/yhhs-/////////::/::/`
-          .ooo+/-::::/+///////++++//-/ossyyhhhhs/:///////:::/::::/:
-          -///:::::::////++///+++/////:/+ooo+/::///////.::://::---+`
-          /////+//++++/////+////-..//////////::-:::--`.:///:---:::/:
-          //+++//++++++////+++///::--                 .::::-------::
-          :/++++///////////++++//////.                -:/:----::../-
-          -/++++//++///+//////////////               .::::---:::-.+`
-          `////////////////////////////:.            --::-----...-/
-            -///://////////////////////::::-..      :-:-:-..-::.`.+`
-            :/://///:///::://::://::::::/:::::::-:---::-.-....``/- -
-              ::::://::://::::::::::::::----------..-:....`.../- -+oo/
-                -/:::-:::::---://:-::-::::----::---.-.......`-/.      ``
-              s-`::--:::------:////----:---.-:::...-.....`./:
-              yMNy.`::-.--::..-dmmhhhs-..-.-.......`.....-/:`
-            oMNNNh. `-::--...:NNNdhhh/.--.`..``.......:/-
-            :dy+:`      .-::-..NNNhhd+``..`...````.-::-`
-                            .-:mNdhh:.......--::::-`
-                              yNh/..------..`
-
-    ]]
-      opts.section.header.val = vim.split(logo, "\n", { triempty = true })
-    end,
   },
   {
     "neovim/nvim-lspconfig",
@@ -111,27 +67,30 @@ return {
     },
   },
   {
-    "jose-elias-alvarez/null-ls.nvim",
-    config = function()
-      nls.setup({
-        on_init = function(client, _)
-          client.offset_encoding = "utf-32"
-        end,
-      })
+    "hrsh7th/nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    ---@param opts cmp.ConfigSchema
+    opts = function(_, opts)
+      local cmp = require("cmp")
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
+        { name = "emoji" },
+        { name = "otter" },
+        { name = "spell" },
+        { name = "cmp_zotcite" },
+        { name = "latex_symbols" },
+        { name = "pandoc_references" },
+      }))
     end,
+  },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
     opts = {
-      sources = {
-        nls.builtins.formatting.just,
-        nls.builtins.formatting.shfmt,
-        nls.builtins.diagnostics.ruff,
-        nls.builtins.formatting.black,
-        nls.builtins.formatting.gofmt,
-        nls.builtins.completion.spell,
-        nls.builtins.formatting.stylua,
-        nls.builtins.formatting.rustfmt,
-        nls.builtins.formatting.prettier,
-        nls.builtins.code_actions.gitsigns,
-        nls.builtins.formatting.latexindent,
+      formatters_by_ft = {
+        sh = { "shfmt" },
+        lua = { "stylua" },
+        python = { "black" },
+        fish = { "fish_indent" },
       },
     },
   },
@@ -181,7 +140,7 @@ return {
       { "jmbuhr/otter.nvim" },
     },
     config = function()
-      require "quarto".setup {
+      require("quarto").setup({
         debug = false,
         closePreviewOnExit = true,
         lspFeatures = {
@@ -192,9 +151,11 @@ return {
           diagnostics = { enabled = true, triggers = { "BufWritePost" } },
         },
         keymap = { hover = "K", definition = "gd" },
-      }
-    end
+      })
+    end,
   },
+  { "jalvesaq/zotcite" },
+  { "jalvesaq/cmp-zotcite" },
   { "Bekaboo/dropbar.nvim" },
   { "navarasu/onedark.nvim" },
   { "rebelot/kanagawa.nvim" },
@@ -203,6 +164,6 @@ return {
   { "shortcuts/no-neck-pain.nvim" },
   { "JuliaEditorSupport/julia-vim" },
   { "nyoom-engineering/oxocarbon.nvim" },
-  { "catppuccin/nvim",                            as = "catppuccin" },
-  { "rose-pine/neovim",                           as = "rose-pine" },
+  { "catppuccin/nvim", as = "catppuccin" },
+  { "rose-pine/neovim", as = "rose-pine" },
 }

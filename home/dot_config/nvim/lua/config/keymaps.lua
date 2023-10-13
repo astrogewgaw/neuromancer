@@ -1,4 +1,5 @@
 vim.keymap.set("n", "<C-a>", "ggVG", { noremap = true, silent = true })
+vim.keymap.set("n", "<A-q>", ":qa!<CR>", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Up>", ":m '<-2<cr>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("n", "<A-Up>", "<cmd>m .-2<cr>==", { noremap = true, silent = true })
 vim.keymap.set("v", "<A-Down>", ":m '>+1<cr>gv=gv", { noremap = true, silent = true })

@@ -55,7 +55,7 @@ cursor:
 live_config_reload: true
 
 ipc_socket: true
-working_directory: /run/media/upanda/codex/codes
+working_directory: /home/upanda/codes
 
 mouse:
   hide_when_typing: true

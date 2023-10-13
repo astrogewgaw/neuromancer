@@ -337,11 +337,11 @@ tex_setup() {
 }
 
 wallpaper_setup() {
-	if [ ! -d "$HOME/wallpapers" ]; then
+	if [ ! -d "$HOME/walls" ]; then
 		say "Setting up the wallpaper and theme..."
 		udisksctl mount -b /dev/sdb1
 		ln -s "$HDD/images/wallpapers/desktop" "$HOME/wallpapers"
-		wal -i "$HOME/wallpapers"
+		wal -i "$HOME/walls"
 	else
 		say "Wallpaper and theme already set."
 	fi
@@ -351,24 +351,24 @@ wallpaper_setup() {
 setup() {
 	hi
 
-	#sudo cp "${paths[cz]}/home/etc/pacman.conf" "/etc/pacman.conf"
-	#sudo cp "${paths[cz]}/home/etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
+	sudo cp "${paths[cz]}/home/etc/pacman.conf" "/etc/pacman.conf"
+	sudo cp "${paths[cz]}/home/etc/monitor.conf" "/etc/X11/xorg.conf.d/10-monitor.conf"
 
 	update_core
 	install_core
 	install_extras
 
-	#install_nfs
-	#install_omz
-	#install_tempo
-	# install_presto
-	# install_miniconda
-	#
-	# tex_setup
-	# rust_setup
-	# python_setup
-	# neovim_setup
-	# wallpaper_setup
+	install_nfs
+	install_omz
+	install_tempo
+	install_presto
+	install_miniconda
+
+	tex_setup
+	rust_setup
+	python_setup
+	neovim_setup
+	wallpaper_setup
 
 	hi
 }

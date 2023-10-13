@@ -6,13 +6,8 @@ APP="vol.sh"
 info() { pactl list sinks; }
 lstrip() { printf '%s\n' "${1##"$2"}"; }
 toggle() { pactl set-sink-mute @DEFAULT_SINK@ toggle >/dev/null; }
-sink() { pactl list short | grep RUNNING | sed -e 's,^\([0-9][0-9]*\)[^0-9].*,\1,'; }
-set() {
-	pactl set-sink-mute @DEFAULT_SINK@ false
-	pactl set-sink-volume @DEFAULT_SINK@ "$@" >/dev/null
-}
-status() { lstrip "$(info | grep '^[[:space:]]Mute:' | head -n $(($(sink) + 1)) | tail -n 1)" '[[:space:]]Mute: '; }
-vol() { info | grep '^[[:space:]]Volume:' | head -n $(($(sink) + 1)) | tail -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'; }
+status() { lstrip "$(pactl get-sink-mute @DEFAULT_SINK@ | head -n 1)" 'Mute: '; }
+vol() { pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | sed -e 's,.* \([0-9][0-9]*\)%.*,\1,'; }
 
 muted() {
 	dunstify \
@@ -31,7 +26,14 @@ volbar() {
 		-h int:value:"$(vol)" "Volume: $(vol)%"
 }
 
-if [[ "$@" == "toggle" ]]; then toggle; else set "$@"; fi
+if [[ "$1" == "toggle" ]]; then toggle; else
+	pactl set-sink-mute @DEFAULT_SINK@ false
+	if [[ "$(vol)" -gt 100 ]]; then
+		pactl set-sink-volume @DEFAULT_SINK@ "100%" >/dev/null
+	else
+		pactl set-sink-volume @DEFAULT_SINK@ "$1" >/dev/null
+	fi
+fi
 
 if [[ $(vol) == 0 || "$(status)" == "yes" ]]; then
 	muted "notification-audio-volume-muted"

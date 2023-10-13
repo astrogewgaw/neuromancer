@@ -22,3 +22,18 @@ source "$HOME/.env.sh"
 source "$HOME/.paths.sh"
 source "$HOME/.aliases.sh"
 . "$HOME/.cargo/env"
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/upanda/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/upanda/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
