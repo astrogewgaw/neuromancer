@@ -1,0 +1,81 @@
+Host wintermute
+  ForwardX11 yes
+  HostName 192.168.110.234
+
+Host fs1
+  ForwardX11 yes
+  HostName fs1.ncra.tifr.res.in
+
+Host fs2
+  ForwardX11 yes
+  HostName fs2.ncra.tifr.res.in
+
+Host achilles
+  ForwardX11 yes
+  HostName achilles.ncra.tifr.res.in
+
+Host tgss70
+  User ujjwal
+  ForwardX11 yes
+  HostName tgss70.ncra.tifr.res.in
+
+Host broker
+  User jroy
+  ForwardX11 yes
+  HostName 192.168.4.51
+  HostKeyAlgorithms ssh-rsa
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host node111
+  User jroy
+  ForwardX11 yes
+  HostKeyAlgorithms ssh-rsa
+  ProxyCommand ssh -q broker nc node111 22
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host node51
+  User jroy
+  ForwardX11 yes
+  HostKeyAlgorithms ssh-rsa
+  ProxyCommand ssh -q broker nc node51 22
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host astro1
+  User upanda
+  ForwardX11 yes
+  HostKeyAlgorithms ssh-rsa
+  HostName astro1.gmrt.ncra.tifr.res.in
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host astro2
+  User upanda
+  ForwardX11 yes
+  HostKeyAlgorithms ssh-rsa
+  HostName astro2.gmrt.ncra.tifr.res.in
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host astro3
+  User upanda
+  ForwardX11 yes
+  HostKeyAlgorithms ssh-rsa
+  HostName astro3.gmrt.ncra.tifr.res.in
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host astro4
+  User upanda
+  ForwardX11 yes
+  HostKeyAlgorithms ssh-rsa
+  HostName astro4.gmrt.ncra.tifr.res.in
+  KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host cluster1
+  Port 4422
+  User ext14
+  ForwardX11 yes
+  HostName parampravega.iisc.ac.in
+
+Host cluster2
+  Port 4422
+  User ext21
+  ForwardX11 yes
+  HostName parampravega.iisc.ac.in
