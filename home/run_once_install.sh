@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STATUS="enabled"
+STATUS="disabled"
 
 declare -A urls
 declare -A paths
@@ -67,10 +67,13 @@ pkgs=(
 	"firefox"
 	"flameshot"
 	"fzf"
+	"gdb"
 	"git-delta"
 	"github-cli"
 	"go"
+	"gping"
 	"gzip"
+	"haveged"
 	"hunspell"
 	"hunspell-en_us"
 	"hyperfine"
@@ -78,6 +81,7 @@ pkgs=(
 	"i3lock"
 	"imagemagick"
 	"inkscape"
+	"intel_media_driver"
 	"just"
 	"lazygit"
 	"man-db"
@@ -90,8 +94,6 @@ pkgs=(
 	"noto-fonts-emoji"
 	"npm"
 	"ntfs-3g"
-	"nvidia"
-	"nvidia-utils"
 	"okular"
 	"openssh"
 	"pacman-contrib"
@@ -124,21 +126,30 @@ pkgs=(
 	"xorg-xinit"
 	"xorg-xrandr"
 	"xsel"
+	"zellij"
+	"zig"
 	"zsh"
 )
 
 extras=(
 	"bibata-cursor-theme-bin"
+	"eww"
 	"faba-icon-theme"
+	"firefox-extension-arch-search"
+	"hw-probe"
 	"julia-bin"
 	"linux-wifi-hotspot"
+	"mkinitcpio-firmware"
 	"ncspot-bin"
 	"pandoc-bin"
 	"peaclock"
 	"pgplot"
 	"pipes.c"
+	"quarto-cli-bin"
+	"rtw88-dkms-git"
 	"slack-desktop"
 	"ttf-juliamono"
+	"typst"
 	"zoom"
 	"zotero-bin"
 )
