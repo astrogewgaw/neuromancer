@@ -10,12 +10,12 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 COMPLETION_WAITING_DOTS="%FAlmost done...%f"
 
 plugins=(
-    fast-syntax-highlighting
     fzf
     gh
     pip
     rust
     sudo
+    fast-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh

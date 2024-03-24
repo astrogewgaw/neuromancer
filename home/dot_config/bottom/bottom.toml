@@ -1,0 +1,10 @@
+[flags]
+rate = "1s"
+regex = true
+color = "nord"
+battery = true
+dot_marker = true
+left_legend = true
+hide_avg_cpu = false
+case_sensitive = true
+show_table_scroll_position = true

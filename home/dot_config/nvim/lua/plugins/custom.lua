@@ -154,6 +154,11 @@ return {
       })
     end,
   },
+  {
+    "kaarmu/typst.vim",
+    ft = "typst",
+    lazy = false,
+  },
   { "jalvesaq/zotcite" },
   { "jalvesaq/cmp-zotcite" },
   { "Bekaboo/dropbar.nvim" },

@@ -1,7 +1,3 @@
-Host wintermute
-  ForwardX11 yes
-  HostName 192.168.110.234
-
 Host fs1
   ForwardX11 yes
   HostName fs1.ncra.tifr.res.in
@@ -67,15 +63,3 @@ Host astro4
   HostKeyAlgorithms ssh-rsa
   HostName astro4.gmrt.ncra.tifr.res.in
   KexAlgorithms diffie-hellman-group-exchange-sha1
-
-Host cluster1
-  Port 4422
-  User ext14
-  ForwardX11 yes
-  HostName parampravega.iisc.ac.in
-
-Host cluster2
-  Port 4422
-  User ext21
-  ForwardX11 yes
-  HostName parampravega.iisc.ac.in
