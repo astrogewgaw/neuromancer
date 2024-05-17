@@ -28,15 +28,15 @@ bindsym $WIN+9 workspace number $ws9
 bindsym $WIN+0 workspace number $ws10
 
 workspace $ws1  output eDP-1
-workspace $ws2  output  DP-1
+workspace $ws2  output HDMI-1
 workspace $ws3  output eDP-1
-workspace $ws4  output  DP-1
+workspace $ws4  output HDMI-1
 workspace $ws5  output eDP-1
-workspace $ws6  output  DP-1
+workspace $ws6  output HDMI-1
 workspace $ws7  output eDP-1
-workspace $ws8  output  DP-1
+workspace $ws8  output HDMI-1
 workspace $ws9  output eDP-1
-workspace $ws10 output  DP-1
+workspace $ws10 output HDMI-1
 
 bindsym $WIN+Shift+1 move container to workspace number $ws1
 bindsym $WIN+Shift+2 move container to workspace number $ws2
