@@ -74,7 +74,6 @@ for_window [title="TimeKeeper"] no_focus
 for_window [title="TimeKeeper"] border pixel 1
 for_window [title="TimeKeeper"] floating enable
 for_window [title="TimeKeeper"] resize set 750px 250px
-for_window [title="TimeKeeper"] move container to output primary
 for_window [title="TimeKeeper"] move position center, move left 575, move up 400
 
 for_window [title="MusicPlayer"] border pixel 1

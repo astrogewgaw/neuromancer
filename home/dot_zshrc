@@ -35,13 +35,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-source "$HOME/.env.sh"
-source "$HOME/.paths.sh"
-source "$HOME/.aliases.sh"
-
-eval "$(atuin init zsh)"
-eval "$(starship init zsh)"
-
 # >>> juliaup initialize >>>
 
 # !! Contents within this block are managed by juliaup !!
@@ -50,3 +43,10 @@ path=('/home/upanda/.juliaup/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<
+
+source "$HOME/.env.sh"
+source "$HOME/.paths.sh"
+source "$HOME/.aliases.sh"
+
+eval "$(atuin init zsh)"
+eval "$(starship init zsh)"

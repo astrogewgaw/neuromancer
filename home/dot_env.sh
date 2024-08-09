@@ -10,11 +10,4 @@ else
 	export EDITOR='nvim'
 fi
 
-export TEMPO="$HOME/tempo"
-export PRESTO="$HOME/presto"
-export PGPLOT_DIR="/usr/lib"
 export JULIA_DEVDIR="/home/upanda/codes/jl"
-export LD_LIBRARY_PATH="$PRESTO/lib:$LD_LIBRARY_PATH"
-
-export NNN_FIFO=/tmp/nnn.fifo
-export NNN_PLUGS="p:preview-tui;w:wallpaper"

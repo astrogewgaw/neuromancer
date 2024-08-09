@@ -6,6 +6,10 @@ Host fs2
   ForwardX11 yes
   HostName fs2.ncra.tifr.res.in
 
+Host gana04
+  ForwardX11 yes
+  HostName gana04.ncra.tifr.res.in
+
 Host achilles
   ForwardX11 yes
   HostName achilles.ncra.tifr.res.in
