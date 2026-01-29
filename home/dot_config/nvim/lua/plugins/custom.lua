@@ -2,7 +2,19 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "onedark",
+      colorscheme = "rose-pine",
+    },
+  },
+  {
+    "folke/snacks.nvim",
+    priority = 1000,
+    lazy = false,
+    opts = {
+      words = { enabled = true },
+      bigfile = { enabled = true },
+      notifier = { enabled = true },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
     },
   },
   {
@@ -13,13 +25,26 @@ return {
         bashls = {},
         clangd = {},
         texlab = {},
-        pyright = {},
         julials = {},
         marksman = {},
-        rust_analyzer = {},
       },
     },
   },
+  {
+    "mason-org/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "ruff",
+        "vale",
+        "isort",
+        "black",
+        "shfmt",
+        "stylua",
+        "shellcheck",
+      },
+    },
+  },
+  { "mason-org/mason-lspconfig.nvim" },
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
@@ -32,6 +57,7 @@ return {
         "css",
         "lua",
         "rust",
+        "just",
         "cuda",
         "bash",
         "json",
@@ -53,34 +79,35 @@ return {
   },
   { "nvim-treesitter/nvim-treesitter-textobjects" },
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "ruff",
-        "vale",
-        "isort",
-        "black",
-        "shfmt",
-        "stylua",
-        "shellcheck",
-      },
-    },
+    "saghen/blink.compat",
+    version = "*",
+    lazy = true,
+    opts = {},
   },
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local cmp = require("cmp")
-      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
-        { name = "emoji" },
-        { name = "otter" },
-        { name = "spell" },
-        { name = "cmp_zotcite" },
-        { name = "latex_symbols" },
-        { name = "pandoc_references" },
-      }))
-    end,
+    "saghen/blink.cmp",
+    dependencies = { "moyiz/blink-emoji.nvim" },
+    opts = {
+      sources = {
+        default = {
+          "lsp",
+          "path",
+          "emoji",
+          "buffer",
+          "snippets",
+        },
+        providers = {
+          emoji = {
+            name = "Emoji",
+            module = "blink-emoji",
+            opts = { insert = true },
+            should_show_items = function()
+              return vim.tbl_contains({ "gitcommit", "markdown" }, vim.o.filetype)
+            end,
+          },
+        },
+      },
+    },
   },
   {
     "stevearc/conform.nvim",
@@ -90,15 +117,36 @@ return {
         sh = { "shfmt" },
         lua = { "stylua" },
         python = { "black" },
+        c = { "clang_format" },
         fish = { "fish_indent" },
+        cmake = { "cmake_format" },
       },
     },
   },
+  { "folke/zen-mode.nvim" },
+  {
+    "OscarCreator/rsync.nvim",
+    build = "make",
+    dependencies = "nvim-lua/plenary.nvim",
+    config = function()
+      require("rsync").setup({})
+    end,
+  },
+  {
+    "chipsenkbeil/distant.nvim",
+    branch = "v0.3",
+    config = function()
+      require("distant"):setup({})
+    end,
+  },
   {
     "iamcco/markdown-preview.nvim",
-    build = function()
-      vim.fn["mkdp#util#install"]()
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    build = "cd app && npm install",
+    init = function()
+      vim.g.mkdp_filetypes = { "markdown" }
     end,
+    ft = { "markdown" },
   },
   {
     "lukas-reineke/headlines.nvim",
@@ -130,13 +178,12 @@ return {
   {
     "andrewferrier/wrapping.nvim",
     config = function()
-      require("wrapping").setup()
+      require("wrapping").setup({})
     end,
   },
   {
     "quarto-dev/quarto-nvim",
     dependencies = {
-      { "hrsh7th/nvim-cmp" },
       { "jmbuhr/otter.nvim" },
     },
     config = function()
@@ -160,7 +207,7 @@ return {
     lazy = false,
   },
   { "jalvesaq/zotcite" },
-  { "jalvesaq/cmp-zotcite" },
+  { "rcarriga/nvim-notify" },
   { "Bekaboo/dropbar.nvim" },
   { "navarasu/onedark.nvim" },
   { "rebelot/kanagawa.nvim" },

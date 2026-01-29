@@ -6,9 +6,9 @@ Host fs2
   ForwardX11 yes
   HostName fs2.ncra.tifr.res.in
 
-Host gana04
+Host bhima
   ForwardX11 yes
-  HostName gana04.ncra.tifr.res.in
+  HostName bhima.ncra.tifr.res.in
 
 Host achilles
   ForwardX11 yes
@@ -67,3 +67,15 @@ Host astro4
   HostKeyAlgorithms ssh-rsa
   HostName astro4.gmrt.ncra.tifr.res.in
   KexAlgorithms diffie-hellman-group-exchange-sha1
+
+Host devrudra
+  Port 4422
+  User gnsmdev
+  ForwardX11 yes
+  HostName paramrudra.gmrt.ncra.tifr.res.in
+
+Host spotrudra
+  Port 4422
+  User spotlight
+  ForwardX11 yes
+  HostName paramrudra.gmrt.ncra.tifr.res.in

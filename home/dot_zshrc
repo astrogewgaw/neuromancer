@@ -11,42 +11,17 @@ COMPLETION_WAITING_DOTS="%FAlmost done...%f"
 
 plugins=(
     fzf
-    gh
     pip
-    rust
     sudo
     fast-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/upanda/conda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/upanda/conda/etc/profile.d/conda.sh" ]; then
-        . "/home/upanda/conda/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/upanda/conda/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-
-# >>> juliaup initialize >>>
-
-# !! Contents within this block are managed by juliaup !!
-
-path=('/home/upanda/.juliaup/bin' $path)
-export PATH
-
-# <<< juliaup initialize <<<
-
 source "$HOME/.env.sh"
 source "$HOME/.paths.sh"
 source "$HOME/.aliases.sh"
+source "$HOME/.functions.sh"
 
 eval "$(atuin init zsh)"
 eval "$(starship init zsh)"

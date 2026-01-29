@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-STATUS="disabled"
+STATUS="enabled"
 
 declare -A urls
 declare -A paths
@@ -39,13 +39,13 @@ urls[miniconda]="https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86
 
 pkgs=(
 	"alacritty"
-	"alsa-plugins"
-	"alsa-utils"
+	#"alsa-plugins"
+	#"alsa-utils"
 	"atuin"
 	"avahi"
 	"bat"
-	"bluez"
-	"bluez-utils"
+	#"bluez"
+	#"bluez-utils"
 	"bottom"
 	"brightnessctl"
 	"cfitsio"
@@ -75,10 +75,10 @@ pkgs=(
 	"gzip"
 	"haveged"
 	"hunspell"
-	"hunspell-en_us"
+	"hunspell-en_gb"
 	"hyperfine"
-	"i3-wm"
-	"i3lock"
+	#"i3-wm"
+	#"i3lock"
 	"imagemagick"
 	"inkscape"
 	"intel_media_driver"
@@ -90,7 +90,7 @@ pkgs=(
 	"mtools"
 	"neofetch"
 	"networkmanager-openvpn"
-	"nnn"
+	#"nnn"
 	"nodejs"
 	"noto-fonts-cjk"
 	"noto-fonts-emoji"
@@ -101,9 +101,9 @@ pkgs=(
 	"openvpn"
 	"pacman-contrib"
 	"playerctl"
-	"pulseaudio"
-	"pulseaudio-alsa"
-	"pulseaudio-bluetooth"
+	#"pulseaudio"
+	#"pulseaudio-alsa"
+	#"pulseaudio-bluetooth"
 	"python-pillow"
 	"python-pywal"
 	"python2"
@@ -125,10 +125,10 @@ pkgs=(
 	"watchexec"
 	"wget"
 	"xdotool"
-	"xorg-server"
-	"xorg-xev"
-	"xorg-xinit"
-	"xorg-xrandr"
+	#"xorg-server"
+	#"xorg-xev"
+	#"xorg-xinit"
+	#"xorg-xrandr"
 	"xsel"
 	"zellij"
 	"zig"
@@ -150,8 +150,8 @@ extras=(
 	"pgplot"
 	"pipes.c"
 	"quarto-cli-bin"
-	"rtw88-dkms-git"
-	"rtl8821cu-dkms-git"
+	#"rtw88-dkms-git"
+	#"rtl8821cu-dkms-git"
 	"slack-desktop"
 	"ttf-juliamono"
 	"typst"
@@ -376,8 +376,8 @@ setup() {
 
 	install_nfs
 	install_omz
-	install_tempo
-	install_presto
+	#install_tempo
+	#install_presto
 	install_miniconda
 
 	tex_setup
